@@ -1,26 +1,41 @@
 #!/usr/bin/python3
-
 """
-Divides a matrix
+Module matrix_divided
+Divided matrix
+
 """
 
 
 def matrix_divided(matrix, div):
-    """
-    Function that divides a matrix
-    """
-    listError = 'matrix must be a matrix (list of lists) of integers/floats'
-    sizeError = 'Each row of the matrix must have the same size'
-    if type(matrix) is not list:
-        raise TypeError(listError)
-    for item in range(len(matrix)):
-        if item is not 0:
-            result = item - 1
-            if len(matrix[item]) is not len(matrix[result]):
-                raise TypeError(sizeError)
-    if isinstance(div, int) is False:
-        raise TypeError('div must be a number')
-    if div is 0:
-        raise ZeroDivisionError('division by zero')
+    """Returns a matrix
+    of results of a divided matrix
 
-    return [[round(item / div, 2) for item in m_list] for m_list in matrix]
+    """
+
+    e = "matrix must be a matrix (list of lists) of integers/floats"
+
+    if type(matrix) != list or len(matrix) == 0 or matrix[0] is None:
+        raise TypeError(e)
+
+    for r in matrix:
+        if len(r) == 0:
+            raise TypeError(e)
+        for i in r:
+            if type(i) != int and type(i) != float:
+                raise TypeError(e)
+
+    lr = []
+    for r in matrix:
+        lr.append(len(r))
+    if not all(item == lr[0] for item in lr):
+        raise TypeError("Each row of the matrix must have the same size")
+
+    if type(div) != int and type(div) != float:
+        raise TypeError("div must be a number")
+
+    if div == 0:
+        raise ZeroDivisionError("division by zero")
+
+    nm = [[round(x / div, 2) for x in r] for r in matrix]
+
+    return nm
