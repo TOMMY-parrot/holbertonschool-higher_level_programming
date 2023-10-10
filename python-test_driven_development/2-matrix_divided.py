@@ -4,6 +4,7 @@
 Divides a matrix
 """
 
+
 def matrix_divided(matrix, div):
     """
     Function that divides a matrix
