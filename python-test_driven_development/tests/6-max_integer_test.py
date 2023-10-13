@@ -5,18 +5,37 @@ import unittest
 max_integer = __import__('6-max_integer').max_integer
 
 class TestMaxInteger(unittest.TestCase):
-    """class for unittests"""
-    def test_max_integer(self):
-        """check possible cases edge cases"""
-        self.assertEqual(max_integer([]), None)
-        self.assertEqual(max_integer([10]), 10)
-        self.assertEqual(max_integer([-12]), -12)
-        self.assertEqual(max_integer([-1, -1, -1]), -1)
-        self.assertEqual(max_integer([15, 1, 25]), 25)
-        self.assertEqual(max_integer([15, 10, 5, -50, -100, -150]), 15)
-        self.assertEqual(max_integer([15, 150, 1500]), 1500)
 
-    def test_type_error(self):
-        """type_errors"""
-        self.assertRaises(TypeError, max_integer, ["h", 1])
-        self.assertRaises(TypeError, max_integer, [2, [2, 1]])
+    def test_max_result(self):
+        self.assertEqual(max_integer([1, 2, 3, 4]), 4)
+
+    def type_test(self):
+        with self.assertRaises(TypeError):
+            self.asssertRaises(max_integer(1))
+
+    def test_normal_list(self):
+        lista = [1, 2, 3, 4]
+        self.assertEqual(max_integer(lista), 4)
+        self.assertEqual(max_integer([[1230], [2321], [6534], [5432]]), [6534])
+
+    def test_with_string(self):
+        with self.assertRaises(TypeError):
+            lista = [1, "paula", 3, 4]
+            max_integer(lista)
+        with self.assertRaises(TypeError):
+            max_integer(4, 5)
+        with self.assertRaises(TypeError):
+            max_integer(["Yup", 11, 4, -21.5, '7'])
+
+    def test_with_negative(self):
+        lista = [1, 2, 3, -4]
+        self.assertEqual(max_integer(lista), 3)
+        self.assertEqual(max_integer([-1, -2, -5, -7]), -1)
+        self.assertEqual(max_integer([7, -7, -7, 7]), 7)
+
+    def empty_list(self):
+        lista = []
+        self.assertIsNone(max_integer(lista))
+
+    def test_OneElement(self):
+        self.assertEqual(max_integer([33]), 33)
