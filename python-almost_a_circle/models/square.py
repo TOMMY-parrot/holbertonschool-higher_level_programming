@@ -53,3 +53,23 @@ class Square(Rectangle):
             str: A string in the format "[Square] (<id>) <x>/<y> - <size>"
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+    
+    def update(self, *args, **kwargs):
+        """
+        Updates the attributes of the Square.
+
+        Args:
+            *args: No-keyword arguments representing the attribute values
+            **kwargs: Key-worded arguments representing the attribute values
+
+        Returns:
+            None
+        """
+        if args:
+            attrs = ["id", "size", "x", "y"]
+            for i, attr_value in enumerate(args):
+                setattr(self, attrs[i], attr_value)
+        else:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
