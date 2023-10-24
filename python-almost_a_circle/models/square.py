@@ -1,24 +1,22 @@
 #!/usr/bin/python3
-""" Module that defines a square """
+'''
+Write the class Square that
+inherits from Rectangle:
+'''
 from models.rectangle import Rectangle
 
+
 class Square(Rectangle):
-    """ Class that represents a square """
+    '''
+    Square class inherits from Rectangle
+    '''
 
     def __init__(self, size, x=0, y=0, id=None):
-        """
-        Initializes a new Square instance.
-
-        Args:
-            size (int): The size of the square.
-            x (int, optional): The x-coordinate of the square's position.
-            y (int, optional): The y-coordinate of the square's position.
-            id (int, optional): The unique identifier for the square.
-
-        Returns:
-            None
-        """
+        '''
+        Constructor
+        '''
         super().__init__(size, size, x, y, id)
+        self.size = size
 
     @property
     def size(self):
