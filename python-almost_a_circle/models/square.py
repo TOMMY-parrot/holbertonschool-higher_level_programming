@@ -1,3 +1,11 @@
+#!/usr/bin/python3
+'''
+Write the class Square that
+inherits from Rectangle:
+'''
+from models.rectangle import Rectangle
+
+
 class Square(Rectangle):
     '''
     Square class inherits from Rectangle
@@ -58,14 +66,3 @@ class Square(Rectangle):
             for key, value in kwargs.items():
                 if hasattr(self, key):
                     setattr(self, key, value)
-    
-    def display(self):
-        """Print the square using '#' characters."""
-        for _ in range(self.y):
-            print()
-        for _ in range(self.height):
-            print(" " * self.x + "#" * self.width)
-
-    def area(self):
-        """Return the area of the square."""
-        return self.width * self.width
