@@ -101,3 +101,23 @@ class Rectangle(Base):
         '''
         return ('[Rectangle] ({}) {}/{} - {}/{}'.format(
             self.id, self.x, self.y, self.width, self.height))
+
+    def update(self, *args, **kwargs):
+        """
+        Updates the attributes of the Rectangle.
+
+        Args:
+            *args: No-keyword arguments representing the attribute values
+            **kwargs: Key-worded arguments representing the attribute values
+
+        Returns:
+            None
+        """
+        if args:
+            attrs = ["id", "width", "height", "x", "y"]
+            for i, attr_value in enumerate(args):
+                setattr(self, attrs[i], attr_value)
+        else:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)
