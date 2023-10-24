@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-'''
-Write the class Square that
-inherits from Rectangle:
-'''
+# square.py
+"""Defines a square class."""
 from models.rectangle import Rectangle
 
 
@@ -22,37 +20,54 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """
-        Getter method for the size attribute.
-
-        Returns:
-            int: The size of the square.
-        """
-        return self.width  # Size is the same as width
+        """Get/set the size of the Square."""
+        return self.width
 
     @size.setter
     def size(self, value):
-        """
-        Setter method for the size attribute.
-
-        Args:
-            value (int): The size of the square.
-
-        Returns:
-            None
-        """
         self.width = value
-        self.height = value  # Assign the same value to width and height
+        self.height = value
 
     def update(self, *args, **kwargs):
-        if args:
-            attrs = ["id", "size", "x", "y"]
-            for i, attr_value in enumerate(args):
-                setattr(self, attrs[i], attr_value)
-        else:
-            for key, value in kwargs.items():
-                if hasattr(self, key):
-                    setattr(self, key, value)
+        """Update the Square.
+
+        Args:
+            *args (ints): New attribute values.
+                - 1st argument represents id attribute
+                - 2nd argument represents size attribute
+                - 3rd argument represents x attribute
+                - 4th argument represents y attribute
+            **kwargs (dict): New key/value pairs of attributes.
+        """
+        if args and len(args) != 0:
+            a = 0
+            for arg in args:
+                if a == 0:
+                    if arg is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif a == 1:
+                    self.size = arg
+                elif a == 2:
+                    self.x = arg
+                elif a == 3:
+                    self.y = arg
+                a += 1
+
+        elif kwargs and len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "id":
+                    if v is None:
+                        self.__init__(self.size, self.x, self.y)
+                    else:
+                        self.id = v
+                elif k == "size":
+                    self.size = v
+                elif k == "x":
+                    self.x = v
+                elif k == "y":
+                    self.y = v
 
     def to_dictionary(self):
         """Return the dictionary representation of the Square."""
