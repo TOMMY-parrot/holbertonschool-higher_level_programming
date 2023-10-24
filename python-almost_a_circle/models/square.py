@@ -28,7 +28,3 @@ class Square(Rectangle):
             str: A string in the format "[Square] (<id>) <x>/<y> - <size>"
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
-
-if __name__ == "__main__":
-    s = Square(5, 2, 3, 1)
-    print(s)
