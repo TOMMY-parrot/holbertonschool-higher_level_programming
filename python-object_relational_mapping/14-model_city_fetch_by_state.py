@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 '''
-Prints the first State object from the database hbtn_0e_6_usa
+Prints all City objects from the database hbtn_0e_14_usa
 '''
-
 from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
+from model_city import City
 
 if __name__ == "__main__":
 
@@ -17,9 +17,10 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    first_state = session.query(State).order_by(State.id).first()
+    query_rows = session.query(City, State).\
+        filter(City.state_id == State.id).all()
 
-    if first_state:
-        print('{}: {}'.format(first_state.id, first_state.name))
-    else:
-        print('Nothing')
+    for city, state in query_rows:
+        print('{}: ({}) {}'.format(state.name, city.id, city.name))
+
+    session.close()
